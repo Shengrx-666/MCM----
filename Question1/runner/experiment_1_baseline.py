@@ -1,7 +1,7 @@
 from time import monotonic
-from model.example import example
-from model.baseline import baseline
-from model.report import report
+from Question1.model.example import example
+from Question1.model.baseline import baseline
+from Question1.model.report import report
 
 
 # 作用：运行同一场景并输出本策略的校验结果。输入：无。返回：无。

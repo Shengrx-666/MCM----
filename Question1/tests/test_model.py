@@ -1,11 +1,11 @@
 from dataclasses import replace
 import unittest
-from model.example import example
+from Question1.model.example import example
 from model.map import Track, fits, safe_trace
-from model.problem import Problem
+from Question1.model.problem import Problem
 from model.windows import Task, Cast, cast_bookings, chain
 from model.dp import solve, local
-from model.baseline import baseline
+from Question1.model.baseline import baseline
 from model.audit import audit
 
 

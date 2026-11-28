@@ -3,7 +3,7 @@ from itertools import product
 from time import monotonic
 
 from model.map import fits, separated
-from model.problem import Lift, Result, validate
+from Question1.model.problem import Lift, Result, validate
 
 
 # 作用：构造已知占位区间。输入：p 为计划，lifts 为已确定的吊运。返回：所有已知预约。

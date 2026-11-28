@@ -1,7 +1,7 @@
 """剩余裕量优先插单，每次保留已承诺的车辆和起落时间。"""
 from dataclasses import replace
 from time import monotonic
-from model.problem import Lift, Result, validate
+from Question1.model.problem import Lift, Result, validate
 from model.dp import solve
 
 

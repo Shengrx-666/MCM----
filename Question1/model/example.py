@@ -1,7 +1,7 @@
 """合成验收场景。"""
 from model.map import Track
 from model.windows import Task
-from model.problem import Problem
+from Question1.model.problem import Problem
 
 
 # 作用：构造同一组五车三任务。输入：无。返回：可重复的合成 Problem，单位为分钟和等距轨道格。

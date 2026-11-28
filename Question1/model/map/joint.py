@@ -4,7 +4,7 @@ from time import monotonic
 import numpy as np
 from scipy.optimize import Bounds, LinearConstraint, milp
 from scipy.sparse import coo_matrix
-from model.problem import Lift, Result, validate
+from Question1.model.problem import Lift, Result, validate
 from model.audit import audit
 
 
