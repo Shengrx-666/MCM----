@@ -22,7 +22,9 @@ def audit(p, result):
             moving += a != b
     busy = set()
     reservations = list(p.bookings)
-    waits, loaded, after_wait = [], 0, 0
+    waits, loaded = [], 0
+    delivery_slack = 0
+    prestart_occupancy = 0
     for t in p.tasks:
         v = jobs[t.name]
         if not (v.car in t.cars and t.ready <= v.start < v.end <= t.due
@@ -44,9 +46,13 @@ def audit(p, result):
                              (t.receiver,v.end,t.downstream)))
         waits.append(v.start-t.ready)
         loaded += v.end-v.start
-        after_wait += t.due-v.end
+        # 各任务的提前交付时长，以及落包至下游开工的时长，均按任务累加。
+        delivery_slack += t.due - v.end
+        prestart_occupancy += t.downstream - v.end
     if not fits(reservations,p.caps) or (sum(waits),moving) != (result.wait,result.movement):
         raise ValueError("资源超容或目标值不一致")
     return dict(wait=sum(waits), p95=sorted(waits)[ceil(.95*len(waits))-1] if waits else 0,
-                post_wait=after_wait, loaded=loaded, empty=moving-loaded,
+                post_wait=delivery_slack,  # 兼容旧报表，原字段一直统计交付余量。
+                delivery_slack=delivery_slack, prestart_occupancy=prestart_occupancy,
+                loaded=loaded, empty=moving-loaded,
                 min_gap=min((b-a for row in rows for a,b in zip(row,row[1:])), default=None))
