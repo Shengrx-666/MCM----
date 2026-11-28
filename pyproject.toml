@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "steel-b-inputs"
+version = "0.1.0"
+description = "Normalized input data for the steel ladle scheduling contest"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+excel = ["openpyxl>=3.1,<4", "xlrd>=2,<3"]
+
+[tool.setuptools.packages.find]
+include = ["steel_inputs*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+steel_inputs = ["data/*.json"]
